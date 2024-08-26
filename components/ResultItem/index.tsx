@@ -18,6 +18,7 @@ import { chevron } from "@/constants/Images";
 import { getUserRepositories } from "@/api/githubApi";
 import { TRepositories } from "@/types";
 import ResultRepositories from "../ResultReposirories";
+import { Strings } from "@/constants/Strings";
 
 interface IProps {
   title: string;
@@ -25,6 +26,8 @@ interface IProps {
 }
 
 const ResultItem = ({ title, isLastItem }: IProps) => {
+  const { FAILED_TO_LOAD_REPOSITORIES, USERNAME, RETRY } = Strings;
+
   const rotate = useSharedValue(0);
   const opacity = useSharedValue(0);
   const containerHeight = useSharedValue(0);
@@ -41,8 +44,8 @@ const ResultItem = ({ title, isLastItem }: IProps) => {
       const results = await getUserRepositories(title);
       setRepositories(results);
     } catch (error) {
-      setError("Failed to load repositories. Please try again.");
-      Alert.alert("Error", "Failed to load repositories. Please try again.");
+      setError(FAILED_TO_LOAD_REPOSITORIES);
+      Alert.alert("Error", FAILED_TO_LOAD_REPOSITORIES);
     } finally {
       setLoading(false);
     }
@@ -79,7 +82,7 @@ const ResultItem = ({ title, isLastItem }: IProps) => {
     >
       <TouchableOpacity onPress={handleExpandToggle} style={styles.header}>
         <Text style={styles.title} numberOfLines={2}>
-          <Text style={styles.labelTitle}>Username:</Text> {title}
+          <Text style={styles.labelTitle}>{USERNAME}</Text> {title}
         </Text>
         <Animated.Image
           source={chevron}
@@ -94,7 +97,7 @@ const ResultItem = ({ title, isLastItem }: IProps) => {
             onPress={fetchRepositories}
             style={styles.retryButton}
           >
-            <Text style={styles.retryText}>Retry</Text>
+            <Text style={styles.retryText}>{RETRY}</Text>
           </TouchableOpacity>
         ) : (
           <ResultRepositories repositories={repositories} />

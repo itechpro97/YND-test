@@ -10,7 +10,7 @@ interface IProps {
 }
 
 const ResultRepositories = ({ repositories }: IProps) => {
-  const { USER_DONT_HAVE_REPOSITORIES, NO_DESCRIPTION } = Strings;
+  const { USER_DONT_HAVE_REPOSITORIES, NO_DESCRIPTION, REPO, DESC } = Strings;
 
   if (repositories.length === 0) {
     return <Text style={styles.empty}>{USER_DONT_HAVE_REPOSITORIES}</Text>;
@@ -28,10 +28,10 @@ const ResultRepositories = ({ repositories }: IProps) => {
         >
           <View style={styles.containerInfo}>
             <Text style={styles.titleRepo} numberOfLines={2}>
-              <Text style={styles.labelInfo}>Repo:</Text> {repo.name}
+              <Text style={styles.labelInfo}>{REPO}</Text> {repo.name}
             </Text>
             <Text style={styles.description} numberOfLines={2}>
-              <Text style={styles.labelInfo}>Desc:</Text>{" "}
+              <Text style={styles.labelInfo}>{DESC}</Text>{" "}
               {repo.description || NO_DESCRIPTION}
             </Text>
           </View>

@@ -8,4 +8,9 @@ export const Strings = {
   USER_DONT_HAVE_REPOSITORIES: "User don't have any repositories",
   NO_DESCRIPTION: "No description",
   NO_RESULTS_FOUND: "No results found.",
+  FAILED_TO_LOAD_REPOSITORIES: "Failed to load repositories. Please try again.",
+  REPO: "Repo:",
+  DESC: "Desc:",
+  USERNAME: "Username:",
+  RETRY: "Retry",
 };
